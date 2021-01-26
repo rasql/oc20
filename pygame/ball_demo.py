@@ -25,7 +25,7 @@ while running:
         if event.type == QUIT:
             running = False
             
-        rect = rect.move(speed)
+    rect = rect.move(speed)
     if rect.left < 0 or rect.right > width:
         speed[0] = -speed[0]
     if rect.top < 0 or rect.bottom > height:
