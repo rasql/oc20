@@ -8,6 +8,8 @@
 - permet de créer, déplacer, supprimer des objets
 - permet de sauvgarger/charger un dessin
 
+![](img/rectangle.png)
+
 ## Game
 
 - jeu programmé avec pygame
