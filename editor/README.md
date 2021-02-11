@@ -1,6 +1,6 @@
-# oc20 - Option complémentaire en informatique
+# oc20 - projet Editor
 
-## Editor
+## Introduction
 
 - éditeur graphique
 - permet de manipuler des objets (rectangles, cercles, lignes, images)
@@ -8,7 +8,28 @@
 - permet de créer, déplacer, supprimer des objets
 - permet de sauvgarger/charger un dessin
 
-## Game
+## Description
+Decrivez ce que votre éditeur peut faire
 
-- jeu programmé avec pygame
-- avec un éditeur intégré
+
+## Interface
+
+Capture d'écran
+
+## Raccourcis claviers
+
+Ces raccourcis permetten d'insérer des formes géométriques:
+- R pour insérer un rectangle
+- L pour insérer une ligne
+- C pour insérer un cercl
+
+Pour changer l'épaisseur il faut appuyer la touche
+- alt+1 pour ligne d'épaisseur 1
+- alt+0 pour figure remplis
+- alt+2 poru ligne d'epaisseur 2
+
+## Manipulation avec la souris
+
+
+
+## Conclusion
