@@ -14,7 +14,9 @@ screen = pygame.display.set_mode((640, 240))
 start = (0, 0)
 size = (0, 0)
 drawing = False
-shape_list = []
+color = RED
+width = 1
+shapes = []
 
 # définir une classe de formes (shape) avec rectangle, couleur, épaisseur
 class Shape:
@@ -22,14 +24,10 @@ class Shape:
         self.rect = rect
         self.color = color
         self.width = width
-
-# créer une instance (objet)
-current_shape = Shape(pygame.Rect(10, 10, 100, 50))
-
-# afficher des attribut de cet objet
-print('rect =', current_shape.rect)
-print('couleur =', current_shape.color)
-print('épaisseur =', current_shape.width)
+        
+    def draw(self):
+        pygame.draw.rect(screen, self.color, self.rect, self.width)
+        
 
 running = True
 
@@ -39,47 +37,39 @@ while running:
             running = False
         if event.type == KEYDOWN:
             if event.key == K_0:
-                current_shape.width = 0
+                width = 0
             elif event.key == K_1:
-                current_shape.width = 1
+                width = 1
             elif event.key == K_2:
-                current_shape.width = 3
+                width = 3
         
             elif event.key == K_r:
-                current_shape.color = RED
+                color = RED
             elif event.key == K_g:
-                current_shape.color = GREEN
+                color = GREEN
             elif event.key == K_b:
-                current_shape.color = BLUE
-        
+                color = BLUE
+            
+            shapes[-1].width = width
+            shapes[-1].color = color
 
         elif event.type == MOUSEBUTTONDOWN:
             start = event.pos
-            size = 0, 0
+            s = Shape(Rect(start, (0, 0)), color, width)
+            shapes.append(s)
             drawing = True
-            current_shape = Shape(pygame.Rect(start, size))
             
         elif event.type == MOUSEBUTTONUP:
-            end = event.pos
-            size = end[0]-start[0], end[1]-start[1]
-            rect = pygame.Rect(start, size)
-            
-            current_shape.rect = rect
-            
-            shape_list.append(current_shape)
             drawing = False
 
         elif event.type == MOUSEMOTION and drawing:
             end = event.pos
             size = end[0]-start[0], end[1]-start[1]
+            shapes[-1].rect.size = size
 
     screen.fill(GRAY)
-    for s in shape_list:
-        pygame.draw.rect(screen, s.color, s.rect, s.width)
-    
-    pygame.draw.rect(screen, current_shape.color,
-                     current_shape.rect, current_shape.width)
-    
+    for s in shapes:
+        s.draw()    
     pygame.display.update()
 
 pygame.quit()
