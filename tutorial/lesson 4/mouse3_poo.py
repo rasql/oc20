@@ -16,18 +16,24 @@ size = (0, 0)
 drawing = False
 color = RED
 width = 1
+type_ = 'r'
 shapes = []
 
 # définir une classe de formes (shape) avec rectangle, couleur, épaisseur
+# type_  'r' = rectangle, 'e' = ellipese
 class Shape:
-    def __init__(self, rect, color=RED, width=1):
+    def __init__(self, rect, color=RED, width=1, type_ = 'r'):
         self.rect = rect
         self.color = color
         self.width = width
+        self.type = type_
         
     def draw(self):
-        pygame.draw.rect(screen, self.color, self.rect, self.width)
-        
+        if self.type == 'r':
+            pygame.draw.rect(screen, self.color, self.rect, self.width)
+        elif self.type == 'e':
+            pygame.draw.ellipse(screen, self.color, self.rect, self.width)
+
 
 running = True
 
@@ -49,9 +55,15 @@ while running:
                 color = GREEN
             elif event.key == K_b:
                 color = BLUE
+                
+            elif event.key == K_e:
+                type_ = 'e'
+            elif event.key == K_f:
+                type_ = 'r'
             
             shapes[-1].width = width
             shapes[-1].color = color
+            shapes[-1].type = type_
 
         elif event.type == MOUSEBUTTONDOWN:
             start = event.pos
